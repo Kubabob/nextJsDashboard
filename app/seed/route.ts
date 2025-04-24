@@ -21,7 +21,7 @@ async function seedUsers() {
       return sql`
         INSERT INTO users (id, name, email, password)
         VALUES (${user.id}, ${user.name}, ${user.email}, ${hashedPassword})
-        ON CONFLICT (id) DO UPDATE;
+        ON CONFLICT (id) DO NOTHING;
       `;
     }),
   );
@@ -47,7 +47,11 @@ async function seedInvoices() {
       (invoice) => sql`
         INSERT INTO invoices (customer_id, amount, status, date)
         VALUES (${invoice.customer_id}, ${invoice.amount}, ${invoice.status}, ${invoice.date})
-        ON CONFLICT (id) DO UPDATE;
+        ON CONFLICT (id) DO UPDATE SET
+          customer_id = ${invoice.customer_id},
+          amount = ${invoice.amount},
+          status = ${invoice.status},
+          date = ${invoice.date};
       `,
     ),
   );
@@ -72,7 +76,7 @@ async function seedCustomers() {
       (customer) => sql`
         INSERT INTO customers (id, name, email, image_url)
         VALUES (${customer.id}, ${customer.name}, ${customer.email}, ${customer.image_url})
-        ON CONFLICT (id) DO UPDATE;
+        ON CONFLICT (id) DO NOTHING;
       `,
     ),
   );
@@ -93,7 +97,7 @@ async function seedRevenue() {
       (rev) => sql`
         INSERT INTO revenue (month, revenue)
         VALUES (${rev.month}, ${rev.revenue})
-        ON CONFLICT (month) DO UPDATE;
+        ON CONFLICT (month) DO NOTHING;
       `,
     ),
   );
