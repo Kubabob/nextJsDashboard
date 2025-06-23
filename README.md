@@ -103,7 +103,7 @@ The project includes visualizations of:
 
 ## Deployment
 
-This application is deployed on Vercel. Visit [example-dashboard.vercel.app](https://example-dashboard.vercel.app) to see the live version.
+This application is deployed on Vercel. Visit [https://next-js-dashboard-git-main-kubabobs-projects.vercel.app/](https://next-js-dashboard-git-main-kubabobs-projects.vercel.app/) to see the live version.
 
 ### Sample Credentials
 
